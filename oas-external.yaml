@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Externalized Types API
+  version: 1.0.0
+  description: |-
+    OpenAPI specification for objects where each type is represented as a property with its own schema.
+paths:
+  /type:
+    post:
+      summary: Create an object with an externalized type (snowball, number, percent, bits, bytes, duration, custom)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalTypeObject'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalTypeObject'
+components:
+  schemas:
+    ExternalTypeObject:
+      type: object
+      properties:
+        snowball:
+          $ref: '#/components/schemas/SnowballType'
+        number:
+          $ref: '#/components/schemas/NumberPercentType'
+        percent:
+          $ref: '#/components/schemas/NumberPercentType'
+        bits:
+          $ref: '#/components/schemas/BitsBytesType'
+        bytes:
+          $ref: '#/components/schemas/BitsBytesType'
+        duration:
+          $ref: '#/components/schemas/DurationType'
+        custom:
+          $ref: '#/components/schemas/CustomType'
+      oneOf:
+        - required: [snowball]
+        - required: [number]
+        - required: [percent]
+        - required: [bits]
+        - required: [bytes]
+        - required: [duration]
+        - required: [custom]
+    SnowballType:
+      type: object
+      properties:
+        stopwords:
+          type: array
+          items:
+            type: string
+      required:
+        - stopwords
+      example:
+        stopwords: [if, and, but]
+    NumberPercentType:
+      type: object
+      properties:
+        decimals:
+          type: integer
+        suffix:
+          type: string
+        compact:
+          type: boolean
+      required:
+        - decimals
+      example:
+        decimals: 2
+        suffix: kg
+        compact: true
+    BitsBytesType:
+      type: object
+      properties:
+        decimals:
+          type: integer
+        suffix:
+          type: string
+      example:
+        decimals: 1
+        suffix: MB
+    DurationType:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+        suffix:
+          type: string
+      required:
+        - from
+        - to
+      example:
+        from: start
+        to: end
+        suffix: ms
+    CustomType:
+      type: object
+      properties:
+        pattern:
+          type: string
+      required:
+        - pattern
+      example:
+        pattern: '[A-Za-z0-9]+'
