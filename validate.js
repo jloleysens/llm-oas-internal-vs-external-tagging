@@ -19,11 +19,11 @@ const ajv = new Ajv({ allErrors: true, strict: false });
 addFormats(ajv);
 
 // Register referenced schemas
-ajv.addSchema(oas.components.schemas.SnowballType, 'SnowballType');
-ajv.addSchema(oas.components.schemas.NumberPercentType, 'NumberPercentType');
-ajv.addSchema(oas.components.schemas.BitsBytesType, 'BitsBytesType');
-ajv.addSchema(oas.components.schemas.DurationType, 'DurationType');
-ajv.addSchema(oas.components.schemas.CustomType, 'CustomType');
+ajv.addSchema(oas.components.schemas.SnowballType, '#/components/schemas/SnowballType');
+ajv.addSchema(oas.components.schemas.NumberPercentType, '#/components/schemas/NumberPercentType');
+ajv.addSchema(oas.components.schemas.BitsBytesType, '#/components/schemas/BitsBytesType');
+ajv.addSchema(oas.components.schemas.DurationType, '#/components/schemas/DurationType');
+ajv.addSchema(oas.components.schemas.CustomType, '#/components/schemas/CustomType');
 
 // Convert OpenAPI oneOf/discriminator to a plain JSON Schema for validation
 const typeObjectSchema = JSON.parse(JSON.stringify(schema));
