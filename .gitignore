@@ -1,1 +1,2 @@
-./example-*
+example-*.json
+node_modules
