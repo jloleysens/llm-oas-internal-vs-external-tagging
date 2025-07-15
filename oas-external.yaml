@@ -3,7 +3,8 @@ info:
   title: Externalized Types API
   version: 1.0.0
   description: |-
-    OpenAPI specification for objects where each type is represented as a property with its own schema.
+    OpenAPI specification for an externally tagged union object
+
 paths:
   /type:
     post:
@@ -24,30 +25,32 @@ paths:
 components:
   schemas:
     ExternalTypeObject:
-      type: object
-      properties:
-        snowball:
-          $ref: '#/components/schemas/SnowballType'
-        number:
-          $ref: '#/components/schemas/NumberPercentType'
-        percent:
-          $ref: '#/components/schemas/NumberPercentType'
-        bits:
-          $ref: '#/components/schemas/BitsBytesType'
-        bytes:
-          $ref: '#/components/schemas/BitsBytesType'
-        duration:
-          $ref: '#/components/schemas/DurationType'
-        custom:
-          $ref: '#/components/schemas/CustomType'
-      oneOf:
-        - required: [snowball]
-        - required: [number]
-        - required: [percent]
-        - required: [bits]
-        - required: [bytes]
-        - required: [duration]
-        - required: [custom]
+      type: array
+      items:
+        type: object
+        properties:
+          snowball:
+            $ref: '#/components/schemas/SnowballType'
+          number:
+            $ref: '#/components/schemas/NumberPercentType'
+          percent:
+            $ref: '#/components/schemas/NumberPercentType'
+          bits:
+            $ref: '#/components/schemas/BitsBytesType'
+          bytes:
+            $ref: '#/components/schemas/BitsBytesType'
+          duration:
+            $ref: '#/components/schemas/DurationType'
+          custom:
+            $ref: '#/components/schemas/CustomType'
+        oneOf:
+          - required: [snowball]
+          - required: [number]
+          - required: [percent]
+          - required: [bits]
+          - required: [bytes]
+          - required: [duration]
+          - required: [custom]
     SnowballType:
       type: object
       properties:

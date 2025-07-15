@@ -1,0 +1,19 @@
+[
+  {
+    "snowball": {
+      "stopwords": ["not", "nor", "only", "also"],
+      "nestedType": {
+        "decimals": 2,
+        "suffix": "%",
+        "compact": false
+      }
+    }
+  },
+  {
+    "duration": {
+      "from": "start",
+      "to": "finish",
+      "suffix": "s"
+    }
+  }
+]

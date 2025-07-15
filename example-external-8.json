@@ -1,0 +1,15 @@
+[
+  {
+    "bytes": {
+      "decimals": 0,
+      "suffix": "GB"
+    }
+  },
+  {
+    "duration": {
+      "from": "alpha",
+      "to": "omega",
+      "suffix": "min"
+    }
+  }
+]

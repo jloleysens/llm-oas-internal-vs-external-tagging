@@ -1,0 +1,12 @@
+[
+  {
+    "type": "snowball",
+    "stopwords": ["if", "and", "but", "the", "a"],
+    "nestedType": {
+      "type": "number",
+      "decimals": 3,
+      "suffix": "kg",
+      "compact": false
+    }
+  }
+]

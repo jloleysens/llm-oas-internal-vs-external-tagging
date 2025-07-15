@@ -1,0 +1,18 @@
+[
+  {
+    "type": "snowball",
+    "stopwords": ["or", "yet", "so"],
+    "nestedType": {
+      "type": "percent",
+      "decimals": 1,
+      "suffix": "%",
+      "compact": true
+    }
+  },
+  {
+    "type": "number",
+    "decimals": 0,
+    "suffix": "m",
+    "compact": false
+  }
+]

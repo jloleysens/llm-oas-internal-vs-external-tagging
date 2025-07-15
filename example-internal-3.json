@@ -1,0 +1,12 @@
+[
+  {
+    "type": "bits",
+    "decimals": 2,
+    "suffix": "Kb"
+  },
+  {
+    "type": "bytes",
+    "decimals": 3,
+    "suffix": "MB"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "type": "snowball",
+    "stopwords": ["foo", "bar", "baz"],
+    "nestedType": {
+      "type": "number",
+      "decimals": 7,
+      "suffix": "g",
+      "compact": false
+    }
+  },
+  {
+    "type": "custom",
+    "pattern": "[0-9]{2}-[A-Z]{2}"
+  },
+  {
+    "type": "duration",
+    "from": "init",
+    "to": "term",
+    "suffix": "hr"
+  }
+]

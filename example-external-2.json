@@ -1,0 +1,19 @@
+[
+  {
+    "snowball": {
+      "stopwords": ["or", "yet", "so"],
+      "nestedType": {
+        "decimals": 1,
+        "suffix": "%",
+        "compact": true
+      }
+    }
+  },
+  {
+    "number": {
+      "decimals": 0,
+      "suffix": "m",
+      "compact": false
+    }
+  }
+]

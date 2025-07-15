@@ -1,0 +1,17 @@
+[
+  {
+    "type": "snowball",
+    "stopwords": ["quick", "brown", "fox"],
+    "nestedType": {
+      "type": "percent",
+      "decimals": 5,
+      "suffix": "pct",
+      "compact": true
+    }
+  },
+  {
+    "type": "bits",
+    "decimals": 8,
+    "suffix": "bit"
+  }
+]

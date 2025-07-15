@@ -1,0 +1,17 @@
+[
+  {
+    "snowball": {
+      "stopwords": ["yet", "so", "for", "nor"],
+      "nestedType": {
+        "decimals": 4,
+        "suffix": "L",
+        "compact": true
+      }
+    }
+  },
+  {
+    "custom": {
+      "pattern": "SNOW-[a-z]{2,5}"
+    }
+  }
+]

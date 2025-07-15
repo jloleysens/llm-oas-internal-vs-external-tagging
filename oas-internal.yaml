@@ -3,7 +3,7 @@ info:
   title: Snowball Type API
   version: 1.0.0
   description: |-
-    OpenAPI specification for a simple object with type 'snowball' and stopwords array.
+    OpenAPI specification for an internally tagged union object
 paths:
   /type:
     post:
@@ -12,8 +12,9 @@ paths:
         required: true
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/TypeObject'
+            type: array
+            items:
+              $ref: '#/components/schemas/ExternalTypeObject'
       responses:
         '200':
           description: Successful creation
@@ -24,22 +25,24 @@ paths:
 components:
   schemas:
     TypeObject:
-      oneOf:
-        - $ref: '#/components/schemas/SnowballType'
-        - $ref: '#/components/schemas/NumberPercentType'
-        - $ref: '#/components/schemas/BitsBytesType'
-        - $ref: '#/components/schemas/DurationType'
-        - $ref: '#/components/schemas/CustomType'
-      discriminator:
-        propertyName: type
-        mapping:
-          snowball: '#/components/schemas/SnowballType'
-          number: '#/components/schemas/NumberPercentType'
-          percent: '#/components/schemas/NumberPercentType'
-          bits: '#/components/schemas/BitsBytesType'
-          bytes: '#/components/schemas/BitsBytesType'
-          duration: '#/components/schemas/DurationType'
-          custom: '#/components/schemas/CustomType'
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/SnowballType'
+          - $ref: '#/components/schemas/NumberPercentType'
+          - $ref: '#/components/schemas/BitsBytesType'
+          - $ref: '#/components/schemas/DurationType'
+          - $ref: '#/components/schemas/CustomType'
+        discriminator:
+          propertyName: type
+          mapping:
+            snowball: '#/components/schemas/SnowballType'
+            number: '#/components/schemas/NumberPercentType'
+            percent: '#/components/schemas/NumberPercentType'
+            bits: '#/components/schemas/BitsBytesType'
+            bytes: '#/components/schemas/BitsBytesType'
+            duration: '#/components/schemas/DurationType'
+            custom: '#/components/schemas/CustomType'
     SnowballType:
       type: object
       properties:
