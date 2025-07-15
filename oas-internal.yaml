@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Snowball Type API
+  version: 1.0.0
+  description: |-
+    OpenAPI specification for a simple object with type 'snowball' and stopwords array.
+paths:
+  /type:
+    post:
+      summary: Create a type object (snowball, number, percent, bits, bytes, duration, custom)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeObject'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeObject'
+components:
+  schemas:
+    TypeObject:
+      oneOf:
+        - $ref: '#/components/schemas/SnowballType'
+        - $ref: '#/components/schemas/NumberPercentType'
+        - $ref: '#/components/schemas/BitsBytesType'
+        - $ref: '#/components/schemas/DurationType'
+        - $ref: '#/components/schemas/CustomType'
+      discriminator:
+        propertyName: type
+        mapping:
+          snowball: '#/components/schemas/SnowballType'
+          number: '#/components/schemas/NumberPercentType'
+          percent: '#/components/schemas/NumberPercentType'
+          bits: '#/components/schemas/BitsBytesType'
+          bytes: '#/components/schemas/BitsBytesType'
+          duration: '#/components/schemas/DurationType'
+          custom: '#/components/schemas/CustomType'
+    SnowballType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [snowball]
+        stopwords:
+          type: array
+          items:
+            type: string
+      required:
+        - type
+        - stopwords
+      example:
+        type: snowball
+        stopwords: [if, and, but]
+    NumberPercentType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [number, percent]
+        decimals:
+          type: integer
+        suffix:
+          type: string
+        compact:
+          type: boolean
+      required:
+        - type
+        - decimals
+      example:
+        type: number
+        decimals: 2
+        suffix: kg
+        compact: true
+    BitsBytesType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [bits, bytes]
+        decimals:
+          type: integer
+        suffix:
+          type: string
+      required:
+        - type
+      example:
+        type: bytes
+        decimals: 1
+        suffix: MB
+    DurationType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [duration]
+        from:
+          type: string
+        to:
+          type: string
+        suffix:
+          type: string
+      required:
+        - type
+        - from
+        - to
+      example:
+        type: duration
+        from: start
+        to: end
+        suffix: ms
+    CustomType:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [custom]
+        pattern:
+          type: string
+      required:
+        - type
+        - pattern
+      example:
+        type: custom
+        pattern: '[A-Za-z0-9]+'
