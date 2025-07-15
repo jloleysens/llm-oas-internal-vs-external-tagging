@@ -1,4 +1,0 @@
-{
-  "type": "snowball",
-  "stopwords": ["if", "and", "but"]
-}
